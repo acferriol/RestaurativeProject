@@ -1,0 +1,118 @@
+{% extends 'index.html' %}
+{% load static %}
+
+{% block title %} Main Work {% endblock %}
+
+{% block content %}
+<section id="hero">
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 pt-5 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center" data-aos="fade-up">
+          <div>
+            <h1>Research Project related to restorative justice. Leuven University-UCLV</h1>
+            <h2>We are a group of professors and researchers of the social sciences</h2>
+          </div>
+        </div>
+        <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="fade-left">
+          <img src="{%static 'images/profile-hero.png' %}" class="img-fluid" alt="">
+        </div>
+      </div>
+    </div>
+
+</section><!-- End Hero -->
+
+<section id="posts">
+    <div class="container">
+
+      <div class="section-title" data-aos="fade-up">
+        <h2>Our Work</h2>
+      </div>
+            {% for post in object_list %}
+              
+              <div class="card text-center mb-5" data-aos="fade-left">             
+
+                <div class="card-header">
+                  
+                  <div id="{{post}}" class="carousel carousel-dark slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+
+                      {% for img in post.images.all %}
+                        
+                        {% if forloop.counter0 == 0 %}
+                        <div class="carousel-item active varheight">
+                          <img src={{img.image.url}} class="img-fluid" alt={{img.image.url}} style="height:100%;">
+                        </div>
+                        
+                        {% else %}
+                        <div class="carousel-item varheight">
+                          <img src={{img.image.url}} class="img-fluid" alt={{img.image.url}} style="height:100%;">
+                        </div>
+                        {% endif %}
+                        
+                      {% endfor %}
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#{{post}}" data-bs-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#{{post}}" data-bs-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Next</span>
+                    </button>
+              </div>
+
+
+                </div>
+                <div class="card-body">
+                  <h5 class="card-title">{{post.title}}</h5>
+
+                  <p class="card-text">
+                  <div class="accordion" id="accordionExample">
+                    <div class="accordion-item">
+                      <h2 class="accordion-header" id="headingOne">
+                        <button class="accordion-button btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#{{post}}" aria-expanded="true" aria-controls="collapseOne">
+                          <strong>About this</strong>
+                        </button>
+                      </h2>
+                      <div id="{{post}}" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+                          {{post.about}} {% lorem 3 b random %}  
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  </p>
+
+                  <p class="mb-1 mt-1"><strong>Participants:</strong>
+
+                    {% for author in post.participants.all %}
+                      {% if forloop.counter0 == 0 %}
+                        {{author}}
+                      {% else %}
+                        &middot; {{author}}
+                      {% endif %}
+                    {% endfor %}
+                  </p>
+                </div>
+                <div class="card-footer text-muted">
+                  <p>{{post.date}}</p>
+                  <p>{{post.place}}</p>
+                </div>
+              </div>
+
+
+              
+
+            {% endfor %}
+              
+      
+
+    </div>
+  </section>
+
+
+{% endblock %}
+
+
+

@@ -1,0 +1,56 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>{% block title %} Document Base {% endblock %}</title>
+
+
+    <!-- Bootstrap -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!--CSS-->
+    {%block styles %}
+    <!--link href="{% static 'css/main.css' %}" rel="stylesheet"-->
+    {% endblock %}
+
+</head>
+
+<body>
+
+    <!-- Header -->
+    {% block header %}
+    <header>
+        <h1>Header de la base</h1>
+    </header>
+    {% endblock %}
+    <!--Content-->
+    {% block content%}
+    <main>
+        <h1>Contenidos base</h1>
+    </main>
+    {% endblock %}
+
+    <!-- Footer -->
+    {% block footer %}
+    <footer>
+        <h1>Footer base</h1>
+    </footer>
+    {% endblock %}
+
+    {% block scripts %}
+    <!-- Bootstrap y jquery-->
+    <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+    <script src="{% static 'js/jquery-3.6.0.slim.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <!--script src="{% static 'js/bootstrap.bundle.min.js' %}"></script-->
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    {% endblock %}
+</body>
+
+
+</html>
